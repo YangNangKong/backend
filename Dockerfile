@@ -17,4 +17,5 @@ COPY . .
 EXPOSE 3000
 
 # 애플리케이션을 실행합니다.
-CMD ["npx", "ts-node", "src/app.ts"]
+# TODO: 개발환경에서는 start script 로 간단하게 해결했지만 실서버로 올릴 때 변경이 필요함
+CMD ["npm", "start"]
