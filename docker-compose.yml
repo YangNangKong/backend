@@ -1,0 +1,15 @@
+version: '3'
+services:
+  express-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/app/src
+      - ./dist:/app/dist
+    environment:
+      - TZ=Asia/Seoul   # 호스트 시간대에 맞게 설정
+volumes:
+  express-app-volume:   # 볼륨 이름 설정
