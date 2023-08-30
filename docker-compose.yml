@@ -9,7 +9,22 @@ services:
     volumes:
       - ./src:/app/src
       - ./dist:/app/dist
+    depends_on:
+      - mysql-db
     environment:
       - TZ=Asia/Seoul   # 호스트 시간대에 맞게 설정
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_HOST=mysql-db
+  
+  mysql-db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+
 volumes:
   express-app-volume:   # 볼륨 이름 설정
