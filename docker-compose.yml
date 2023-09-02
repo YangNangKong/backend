@@ -1,11 +1,12 @@
 version: '3'
 services:
   express-app:
+    container_name: backend_express
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '3000:3000'
+      - '${EXPRESS_PORT}:${EXPRESS_PORT}'
     volumes:
       - ./src:/app/src
       - ./dist:/app/dist
@@ -17,6 +18,7 @@ services:
       - MYSQL_HOST=mysql-db
   
   mysql-db:
+    container_name: backend_mysql
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -24,7 +26,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "${EXTERNAL_MYSQL_PORT}:${MYSQL_PORT}"
 
 volumes:
   express-app-volume:   # 볼륨 이름 설정
