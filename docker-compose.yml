@@ -18,7 +18,7 @@ services:
       - MYSQL_HOST=mysql-db
   
   mysql-db:
-    container_name: backend_mysql
+    container_name: ${MYSQL_NAME}
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
