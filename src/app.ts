@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
-import { dbConnection, connectToDatabase } from './config/database';
+import sequelize from './config/database'; // 데이터베이스 연결 설정 가져오기
+import User from './models/user'; // 모델 가져오기
 
 const app = express();
 const PORT = process.env.EXPRESS_PORT || 3000;
@@ -12,19 +13,15 @@ app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
-// app.get('/', async (req: Request, res: Response) => {
-//   try {
-//     if (!dbConnection) {
-//       await connectToDatabase();
-//     }
-//     const [rows] = await dbConnection.query('select * from test_table');
-//     res.json(rows);
-//   } catch (error) {
-//     console.error('Error executing MySQL query:', error);
-//     res.status(500).json({ error: 'Error executing query' });
-//   }
-// });
+// Sequelize와 모델 초기화
+async function init() {
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync(); // 모델과 데이터베이스 동기화
+    console.log('데이터베이스와 연결되었습니다.');
+  } catch (error) {
+    console.error('데이터베이스 연결 오류:', error);
+  }
+}
 
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
+init();
