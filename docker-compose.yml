@@ -15,7 +15,7 @@ services:
     environment:
       - TZ=Asia/Seoul   # 호스트 시간대에 맞게 설정
       - MYSQL_PORT=${MYSQL_PORT}
-      - MYSQL_HOST=${MYSQL_NAME}
+      - MYSQL_HOST=mysql-db
   
   mysql-db:
     container_name: ${MYSQL_NAME}
