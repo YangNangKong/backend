@@ -13,9 +13,9 @@ services:
     depends_on:
       - mysql-db
     environment:
-      - TZ=Asia/Seoul   # 호스트 시간대에 맞게 설정
-      - MYSQL_PORT=${MYSQL_PORT}
-      - MYSQL_HOST=mysql-db
+      TZ: "Asia/Seoul"
+      MYSQL_PORT: "${MYSQL_PORT}"
+      MYSQL_HOST: "${MYSQL_NAME}"
     links:
       - mysql-db
   
