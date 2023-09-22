@@ -23,8 +23,9 @@ if (isRollback) {
 exec(command, (error, stdout, stderr) => {
     if (error) {
         console.error('Error:', error);
+        console.error('stderr:', stderr);
         return;
     }
     console.log('stdout:', stdout);
-    console.error('stderr:', stderr);
+    console.log('마이그레이션 성공!');
 });
