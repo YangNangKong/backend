@@ -11,7 +11,7 @@ const migrationsPath = './src/migrations';
 
 // 커맨드 라인 옵션 확인
 const args = process.argv.slice(2);
-const isRollback = args.includes('--rollback');
+const isRollback = args.includes('--rollback'); // 롤백옵션
 
 let command = '';
 if (isRollback) {
@@ -26,6 +26,7 @@ exec(command, (error, stdout, stderr) => {
         console.error('stderr:', stderr);
         return;
     }
+
     console.log('stdout:', stdout);
-    console.log('마이그레이션 성공!');
+    isRollback ? console.log('롤백 성공!') : console.log('마이그레이션 성공!');
 });
