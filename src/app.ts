@@ -21,19 +21,19 @@ async function init() {
     await sequelize.sync(); // 모델과 데이터베이스 동기화
     console.log('데이터베이스와 연결되었습니다.');
 
-    const results = await sequelize.query('SELECT * FROM test_table', {
-      type: QueryTypes.SELECT,
-    });
+    // const results = await sequelize.query('SELECT * FROM test_table', {
+    //   type: QueryTypes.SELECT,
+    // });
 
-    User.findAll()
-      .then((users) => {
-        console.log('모든 사용자:', users.map((user) => user.toJSON()));
-      })
-      .catch((error) => {
-        console.error('사용자 조회 오류:', error);
-      });
+    // User.findAll()
+    //   .then((users) => {
+    //     console.log('모든 사용자:', users.map((user) => user.toJSON()));
+    //   })
+    //   .catch((error) => {
+    //     console.error('사용자 조회 오류:', error);
+    //   });
   
-    console.log(results);
+    // console.log(results);
 
   } catch (error) {
     console.error('데이터베이스 연결 오류:', error);
