@@ -3,3 +3,6 @@
 마이그레이션
 docker exec backend_express npm run migration
 docker exec backend_express npm run rollback
+
+npx sequelize-cli migration:generate --migrations-path src/migrations --name 이름
+npx sequelize-cli migration:generate --migrations-path src/migrations --name create_test_users_table
