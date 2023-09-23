@@ -1,0 +1,5 @@
+커멘드 실행 명령어
+
+마이그레이션
+docker exec backend_express npm run migration
+docker exec backend_express npm run rollback
