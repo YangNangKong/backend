@@ -29,6 +29,9 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "${EXTERNAL_MYSQL_PORT}:${MYSQL_PORT}"
+    volumes:
+      - mysql-data:/var/lib/mysql
 
 volumes:
-  express-app-volume:   # 볼륨 이름 설정
+  express-app-volume:   # express 볼륨
+  mysql-data: # mysql 볼륨
