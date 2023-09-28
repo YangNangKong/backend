@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/User'; // User 모델 가져오기
+import { UserResource } from '../resources/UserResource';
 
 // Create (POST) a new user
 export const createUser = async (req: Request, res: Response) => {
@@ -21,7 +22,10 @@ export const createUser = async (req: Request, res: Response) => {
             company_code,
             phone_number,
         });
-        res.status(201).json(user);
+        await user.hashPassword(); // 비밀번호 암호화 메서드 호출
+        await user.save(); // 암호화된 비밀번호로 저장
+
+        res.status(201).json(new UserResource(user));
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Failed to create user' });
@@ -32,7 +36,9 @@ export const createUser = async (req: Request, res: Response) => {
 export const getUsers = async (req: Request, res: Response) => {
     try {
         const users = await User.findAll();
-        res.status(200).json(users);
+        const userResources = users.map((user) => new UserResource(user));
+
+        res.status(200).json(userResources);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch users' });
     }

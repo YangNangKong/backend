@@ -1,9 +1,10 @@
 // models/user.ts
-import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
+import bcrypt from 'bcrypt';
 
 class User extends Model {
-    // public id!: number;
+    public id!: number;
     public user_name!: string;
     public email!: string;
     public password!: string;
@@ -14,25 +15,30 @@ class User extends Model {
     public readonly updatedAt!: Date;
     public deletedAt!: Date | null; // 삭제 시간
 
-    // constructor(values?: Partial<User>, options?: BuildOptions) {
-    //     super(values, options);
-        
-    //     this.company_name = ''; // 생성자에서 초기화
-    //     this.company_code = ''; // 생성자에서 초기화
-    //     this.phone_number = ''; // 생성자에서 초기화
-    //     this.deletedAt = null; // 생성자에서 초기화
-    // }
+    // 비밀번호 암호화 메서드
+    public async hashPassword(): Promise<void> {
+        const saltRounds = 10; // 암호화 강도 (조절 가능)
+        this.password = await bcrypt.hash(this.password, saltRounds);
+    }
+
+    // 비밀번호 검증 메서드
+    async checkPassword(password: string) {
+        return bcrypt.compare(password, this.password);
+    }
 }
 
 User.init(
     {
-        // id: {
-        //   type: DataTypes.INTEGER,
-        //   allowNull: false,
-        // },
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+        },
         user_name: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
         email: {
             type: DataTypes.STRING,
