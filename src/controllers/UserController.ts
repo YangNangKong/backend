@@ -1,10 +1,17 @@
 import { Request, Response } from 'express';
 import User from '../models/User'; // User 모델 가져오기
 import { UserResource } from '../resources/UserResource';
+import { validationResult } from 'express-validator';
 
 // Create (POST) a new user
 export const createUser = async (req: Request, res: Response) => {
     try {
+        // Validation 오류 체크
+        const errors = validationResult(req);
+        if (!(errors.isEmpty())) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
         const {
             user_name,
             email,

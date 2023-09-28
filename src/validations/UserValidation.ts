@@ -1,17 +1,22 @@
 import { body, ValidationChain } from 'express-validator';
 
 export const create: ValidationChain[] = [
-    body('user_name').exists().isString().withMessage('유저명은 필수 입니다.'),
-    body('email').exists().isString().isEmail(),
-    body('company_name').isString(),
-    body('company_code').isString(),
-    body('phone_number').isString(),
-    body('password').exists().isString().isLength({ min: 5, max: 20 }),
-
-    // TODO: 각각 withMessage 지정해줘야함
-    // body('email').exists().withMessage('"{{FIELD}}" 필드는 필수 값입니다.')
-    //   .isString().withMessage('이메일은 문자열이어야 합니다.')
-    //   .isEmail().withMessage('유효한 이메일 주소를 입력하세요.'),
+    body('user_name')
+        .exists().withMessage('user_name is required')
+        .isString().withMessage('user_name must be a string'),
+    body('email')
+        .exists().withMessage('email is required')
+        .isEmail().withMessage('email is not valid'),
+    body('company_name')
+        .isString().withMessage('company_name must be a string'),
+    body('company_code')
+        .isString().withMessage('company_code must be a string'),
+    body('phone_number')
+        .isString().withMessage('phone_number must be a string'),
+    body('password')
+        .exists().withMessage('password is required')
+        .isString().withMessage('password must be a string')
+        .isLength({ min: 5, max: 20 }).withMessage('password min: 5, max: 20'),
 ];
 
 export const update: ValidationChain[] = [
