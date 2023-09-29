@@ -10,6 +10,7 @@ const sequelize = new Sequelize(
     host: (process.env.MYSQL_NAME || 'localhost'),
     port: parseInt(process.env.MYSQL_PASSWORD || '3306'),
     dialect: 'mysql',
+    timezone: 'Asia/Seoul', // 서울 시간대로 설정
   });
 
 export default sequelize;
