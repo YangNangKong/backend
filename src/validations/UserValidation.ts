@@ -8,10 +8,13 @@ export const create: ValidationChain[] = [
         .exists().withMessage('email is required')
         .isEmail().withMessage('email is not valid'),
     body('company_name')
+        .optional()
         .isString().withMessage('company_name must be a string'),
     body('company_code')
+        .optional()
         .isString().withMessage('company_code must be a string'),
     body('phone_number')
+        .optional()
         .isString().withMessage('phone_number must be a string'),
     body('password')
         .exists().withMessage('password is required')
@@ -20,8 +23,8 @@ export const create: ValidationChain[] = [
 ];
 
 export const update: ValidationChain[] = [
-  body('email').isEmail(),
-  // 다른 유효성 검사 규칙 추가
+    body('email').isEmail(),
+    // 다른 유효성 검사 규칙 추가
 ];
 
 export const login: ValidationChain[] = [
