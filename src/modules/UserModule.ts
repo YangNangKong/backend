@@ -1,6 +1,7 @@
 import { Request } from 'express';
 import User from '../models/User';
 import { UserResource } from '../resources/UserResource';
+import { generateToken } from './Token';
 
 class UserModule {
     // constructor(parameters) {
@@ -46,6 +47,23 @@ class UserModule {
             console.log(error);
             throw error;
         }
+    }
+
+    static async getToken(req: Request) {
+        let token = 'fail';
+        const {
+            user_name,
+            password,
+        } = req.body;
+
+        const user = await User.findOne({ where: { user_name: user_name } });
+        if (user && await user.checkPassword(password)) {
+            token = generateToken({ user_id: user.id, user_name: user.user_name });
+        } else {
+            token = '계정정보를 다시 확인해주세요.';
+        }
+
+        return token;
     }
 }
 

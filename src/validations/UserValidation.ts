@@ -23,3 +23,13 @@ export const update: ValidationChain[] = [
   body('email').isEmail(),
   // 다른 유효성 검사 규칙 추가
 ];
+
+export const login: ValidationChain[] = [
+    body('user_name')
+        .exists().withMessage('user_name is required')
+        .isString().withMessage('user_name must be a string'),
+    body('password')
+        .exists().withMessage('password is required')
+        .isString().withMessage('password must be a string')
+        .isLength({ min: 5, max: 20 }).withMessage('password min: 5, max: 20'),
+];

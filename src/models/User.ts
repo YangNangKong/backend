@@ -22,7 +22,7 @@ class User extends Model {
     }
 
     // 비밀번호 검증 메서드
-    async checkPassword(password: string) {
+    public async checkPassword(password: string) {
         return bcrypt.compare(password, this.password);
     }
 }
