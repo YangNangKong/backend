@@ -48,18 +48,18 @@ User.init(
         company_name: {
             type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: '',
+            defaultValue: null,
         },
         company_code: {
             type: DataTypes.STRING,
             allowNull: true,
             unique: true,
-            defaultValue: '',
+            defaultValue: null,
         },
         phone_number: {
             type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: '',
+            defaultValue: null,
         },
         password: {
             type: DataTypes.STRING,
