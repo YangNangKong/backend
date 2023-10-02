@@ -2,6 +2,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import bcrypt from 'bcrypt';
+import UserToken from './UserToken';
 
 class User extends Model {
     public id!: number;
@@ -14,6 +15,15 @@ class User extends Model {
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
     public deletedAt!: Date | null; // 삭제 시간
+
+    // UserToken 관계
+    public UserToken?: UserToken;
+    static associate(models: { UserToken: typeof UserToken }) {
+        User.hasOne(models.UserToken, {
+            foreignKey: 'user_id',
+            onDelete: 'CASCADE',
+        });
+    }
 
     // 비밀번호 암호화 메서드
     public async hashPassword(): Promise<void> {

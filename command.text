@@ -7,3 +7,4 @@ docker exec backend_express npm run rollback
 docker exec backend_express npx sequelize-cli migration:generate --migrations-path src/migrations --name 이름
 docker exec backend_express npx sequelize-cli migration:generate --migrations-path src/migrations --name create_test_users_table
 docker exec backend_express npx sequelize-cli migration:generate --migrations-path src/migrations --name create_users_table
+docker exec backend_express npx sequelize-cli migration:generate --migrations-path src/migrations --name create_user_token_table

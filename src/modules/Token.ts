@@ -11,6 +11,7 @@ export function generateToken(data: any): string {
 }
 
 export function authenticateToken(req: Request, res: Response, next: NextFunction) {
+    // TODO: 미들웨어에 있어야 하는데 어떻게 처리할지 고민필요
     let token = req.headers.authorization; // 요청 헤더에서 토큰을 가져옵니다.
 
     if (!token) {
