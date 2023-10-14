@@ -1,4 +1,3 @@
-// models/user.ts
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import User from './User';
@@ -10,6 +9,9 @@ class UserToken extends Model {
     public readonly updatedAt!: Date;
     public deletedAt!: Date | null; // 삭제 시간
 
+    // 연관모델
+    // public readonly User?: User;
+
     // User
     public readonly User?: User;
     static associate(models: { User: typeof User }) {
@@ -19,6 +21,11 @@ class UserToken extends Model {
         });
     }
 }
+
+// UserToken.belongsTo(User, {
+//     foreignKey: 'user_id',
+//     onDelete: 'CASCADE',
+// });
 
 UserToken.init(
     {

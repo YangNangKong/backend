@@ -1,4 +1,3 @@
-// models/user.ts
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 import bcrypt from 'bcrypt';
@@ -16,14 +15,8 @@ class User extends Model {
     public readonly updatedAt!: Date;
     public deletedAt!: Date | null; // 삭제 시간
 
-    // UserToken 관계
-    public UserToken?: UserToken;
-    static associate(models: { UserToken: typeof UserToken }) {
-        User.hasOne(models.UserToken, {
-            foreignKey: 'user_id',
-            onDelete: 'CASCADE',
-        });
-    }
+    // 연관모델
+    // public UserToken?: UserToken;
 
     // 비밀번호 암호화 메서드
     public async hashPassword(): Promise<void> {
@@ -36,6 +29,11 @@ class User extends Model {
         return bcrypt.compare(password, this.password);
     }
 }
+
+// User.hasOne(UserToken, {
+//     foreignKey: 'user_id',
+//     onDelete: 'CASCADE',
+// });
 
 User.init(
     {
