@@ -11,15 +11,6 @@ class UserToken extends Model {
 
     // 연관모델
     // public readonly User?: User;
-
-    // User
-    public readonly User?: User;
-    static associate(models: { User: typeof User }) {
-        UserToken.belongsTo(models.User, {
-            foreignKey: 'user_id',
-            onDelete: 'CASCADE',
-        });
-    }
 }
 
 // UserToken.belongsTo(User, {
