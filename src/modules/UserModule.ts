@@ -2,6 +2,7 @@ import { Request } from 'express';
 import User from '../models/User';
 import { UserResource } from '../resources/UserResource';
 import { generateToken } from './Token';
+import UserToken from '../models/UserToken';
 
 class UserModule {
     // constructor(parameters) {
@@ -58,7 +59,18 @@ class UserModule {
 
         const user = await User.findOne({ where: { user_name: user_name } });
         if (user && await user.checkPassword(password)) {
-            token = generateToken({ user_id: user.id, user_name: user.user_name });
+            const [userToken, created] = await UserToken.findOrCreate({
+                where: { user_id: user.id },
+                defaults: { token: '' }
+            });
+
+            if (userToken) {
+                token = generateToken({ user_id: user.id, user_name: user.user_name });
+
+                // token 테이블에 저장
+                userToken.token = token;
+                userToken.save();
+            }
         } else {
             token = '계정정보를 다시 확인해주세요.';
         }

@@ -1,6 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
-import User from './User';
 
 class UserToken extends Model {
     public user_id!: number;
@@ -13,7 +12,7 @@ class UserToken extends Model {
     // public readonly User?: User;
 }
 
-// UserToken.belongsTo(User, {
+// UserToken.hasOne(User, {
 //     foreignKey: 'user_id',
 //     onDelete: 'CASCADE',
 // });
@@ -23,12 +22,12 @@ UserToken.init(
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            autoIncrement: true,
+            // autoIncrement: true,
             primaryKey: true,
         },
         token: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             unique: true,
         },
         createdAt: {
