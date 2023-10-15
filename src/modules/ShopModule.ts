@@ -27,6 +27,13 @@ class ShopModule {
             throw error;
         }
     }
+
+    static async get(shopId: string) {
+        const shop = await Shop.findByPk(shopId);
+        if (!shop) { return { message: '매장을 찾을 수 없습니다.' }; }
+
+        return new ShopResource(shop);
+    }
 }
 
 export default ShopModule;

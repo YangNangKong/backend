@@ -20,6 +20,8 @@ router.use('/', authenticateToken);
 router.get('/users', UserController.getUsers); // 조회 // TODO: 전체 조회기능은 추후 필요 막는게 필요
 
 // 매장 CRUD
+router.get('/shop/:shop_id', ShopController.getShop); // 매장조회
+// router.get('/shops', ShopController.createShop); // 매장 전체조회는.. 추후 필요할 때 개발
 router.post('/shop', ShopController.createShop); // 생성
 
 // 테스트유저

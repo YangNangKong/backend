@@ -5,6 +5,17 @@ import ShopModule from '../modules/ShopModule';
 import * as ShopValidation from '../validations/ShopValidation';
 
 class ShopController {
+    
+    static async getShop(req: Request, res: Response) {
+        const shopId = req.params.shop_id;
+
+        try {
+            const shopData = await ShopModule.get(shopId);
+            res.status(201).json(shopData);
+        } catch (error) {
+            res.status(500).json({ error: '매장 조회중 오류가 발생했습니다.' });
+        }
+    }
 
     // Create (POST) a new shop
     static async createShop(req: Request, res: Response) {
