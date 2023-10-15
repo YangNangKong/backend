@@ -45,10 +45,12 @@ Shop.init(
         open_date: {
             type: DataTypes.DATE,
             allowNull: true,
+            defaultValue: null,
         },
         closed_date: {
             type: DataTypes.DATE,
             allowNull: true,
+            defaultValue: null,
         },
         createdAt: {
             type: DataTypes.DATE,
