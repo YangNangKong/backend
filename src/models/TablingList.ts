@@ -1,16 +1,17 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 
-class TableManagement extends Model {
+class TablingList extends Model {
     public id!: number;
     public shop_id!: number;
     public tabling_type!: string;
+    public phone_number!: string;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
     public deletedAt!: Date | null; // 삭제 시간
 }
 
-TableManagement.init(
+TablingList.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -26,6 +27,11 @@ TableManagement.init(
             type: DataTypes.STRING,
             allowNull: true,
             unique: true,
+        },
+        phone_number: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: null,
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -46,11 +52,11 @@ TableManagement.init(
     },
     {
         sequelize,
-        modelName: 'TableManagement',
-        tableName: 'table_management',
+        modelName: 'TablingList',
+        tableName: 'tabling_list',
         paranoid: true, // 소프트 삭제 활성화
         timestamps: true, // 자동 타임스탬프 활성화
     }
 );
 
-export default TableManagement;
+export default TablingList;
