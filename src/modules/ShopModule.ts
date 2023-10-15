@@ -1,5 +1,6 @@
 import { Request } from 'express';
 import Shop from '../models/Shop';
+import { ShopResource } from '../resources/ShopResource';
 
 class ShopModule {
     static async create(req: Request) {
@@ -19,7 +20,7 @@ class ShopModule {
             });
 
             // TODO: resource 추가
-            return shop;
+            return new ShopResource(shop);
         } catch (error) {
             // TODO: error 핸들링 처리 추가
             console.log(error);

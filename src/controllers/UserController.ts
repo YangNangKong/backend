@@ -6,7 +6,6 @@ import UserModule from '../modules/UserModule';
 import * as UserValidation from '../validations/UserValidation';
 
 class UserController {
-
     // Create (POST) a new user
     static async createUser(req: Request, res: Response) {
         // Validation 오류 체크
