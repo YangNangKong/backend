@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('table_management', {
+    await queryInterface.createTable('tabling_list', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,6 +17,10 @@ module.exports = {
           model: 'shop', // 'shop' 테이블과 연결
           key: 'id', // 'shop' 테이블의 'id' 열과 연결
         },
+      },
+      phone_number: {
+        type: Sequelize.STRING(20),
+        allowNull: true,
       },
       tabling_type: {
         type: Sequelize.STRING(20),
@@ -38,6 +42,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('table_management');
+    await queryInterface.dropTable('tabling_list');
   }
 };
