@@ -12,3 +12,5 @@ docker exec backend_express npx sequelize-cli migration:generate --migrations-pa
 
 docker exec backend_express npx sequelize-cli migration:generate --migrations-path src/migrations --name create_shop_table
 docker exec backend_express npx sequelize-cli migration:generate --migrations-path src/migrations --name create_table_management_table
+
+docker exec backend_express npx sequelize-cli migration:generate --migrations-path src/migrations --name create_log_tables
