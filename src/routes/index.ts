@@ -28,7 +28,10 @@ router.post('/shop', ShopController.createShop); // 생성
 // TODO: 수정, 삭제, 전체조회 구현필요
 
 // 메인! 테이블링 로직
+router.get('/tabling/waiting-list', TablingController.getWaitList); // 대기손님 리스트
 router.post('/tabling/waiting-list/add', TablingController.createWaitList); // 대기손님 추가
+router.put('/tabling/waiting-list/update', TablingController.updateType); // 대기손님 상태변경
+router.post('/tabling/waiting-list/call', TablingController.callCustomer); // 대기손님 호출
 
 // 테스트유저
 router.post('/testUsers', TestUserController.createTestUser); // 생성
