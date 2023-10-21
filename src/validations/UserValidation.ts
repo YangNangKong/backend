@@ -4,6 +4,10 @@ export const create: ValidationChain[] = [
     body('user_name')
         .exists().withMessage('user_name is required')
         .isString().withMessage('user_name must be a string'),
+    body('user_type')
+        .exists().withMessage('user_type is required')
+        .isString().withMessage('user_type must be a string')
+        .isIn(['member', 'master']).withMessage('user_type must be "member" or "master"'),
     body('email')
         .exists().withMessage('email is required')
         .isEmail().withMessage('email is not valid'),

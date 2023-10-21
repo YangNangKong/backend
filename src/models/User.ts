@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 class User extends Model {
     public id!: number;
     public user_name!: string;
+    public user_type!: string;
     public email!: string;
     public password!: string;
     public company_name!: string;
@@ -46,6 +47,10 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
+        },
+        user_type: {
+            type: DataTypes.STRING(20), // 데이터 타입은 사용자 유형에 따라 수정
+            allowNull: false, // 필요에 따라 수정
         },
         email: {
             type: DataTypes.STRING,
