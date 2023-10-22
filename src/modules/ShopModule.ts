@@ -19,7 +19,6 @@ class ShopModule {
                 detail_address,
             });
 
-            // TODO: resource 추가
             return new ShopResource(shop);
         } catch (error) {
             // TODO: error 핸들링 처리 추가
