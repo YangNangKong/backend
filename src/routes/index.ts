@@ -25,6 +25,7 @@ router.get('/users', UserController.getUsers); // 조회 // TODO: 전체 조회�
 // 매장 CRUD
 router.get('/shop/:shop_id', ShopController.getShop); // 매장조회
 router.post('/shop', ShopController.createShop); // 생성
+router.put('/shop/:status', ShopController.updateStoreStatus); // 오픈, 마감
 // TODO: 수정, 삭제, 전체조회 구현필요
 
 // 메인! 테이블링 로직

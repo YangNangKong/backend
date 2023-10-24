@@ -1,4 +1,4 @@
-import { body, ValidationChain } from 'express-validator';
+import { body, param, ValidationChain } from 'express-validator';
 
 export const create: ValidationChain[] = [
     body('shop_name')
@@ -14,3 +14,12 @@ export const create: ValidationChain[] = [
         .optional()
         .isString().withMessage('phone_number must be a string'),
 ];
+
+export const updateStoreStatus: ValidationChain[] = [
+    param('status')
+        .exists().withMessage('status is required')
+        .isIn(['open', 'close']).withMessage('tabling_type must be "open", "close"'),
+    body('shop_id')
+        .exists().withMessage('shop_id is required')
+        .isInt().withMessage('shop_id must be a int'),
+]

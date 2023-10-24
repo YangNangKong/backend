@@ -7,8 +7,8 @@ export class ShopResource {
     phone_number: string;
     address: string;
     detail_address: string;
-    open_date: Date;
-    closed_date: Date;
+    open_date: Date | null;
+    closed_date: Date | null;
     // createdAt: Date;
     // updatedAt: Date;
 

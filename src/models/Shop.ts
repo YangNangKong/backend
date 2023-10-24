@@ -7,8 +7,8 @@ class Shop extends Model {
     public phone_number!: string;
     public address!: string;
     public detail_address!: string;
-    public open_date!: Date; // 오픈시간
-    public closed_date!: Date; // 마감시간
+    public open_date!: Date | null; // 오픈시간
+    public closed_date!: Date | null; // 마감시간
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
     public deletedAt!: Date | null; // 삭제 시간
