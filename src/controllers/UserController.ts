@@ -4,6 +4,7 @@ import { UserResource } from '../resources/UserResource';
 import { validationResult } from 'express-validator';
 import UserModule from '../modules/UserModule';
 import * as UserValidation from '../validations/UserValidation';
+import LogModule from '../modules/LogModule';
 
 class UserController {
     // Create (POST) a new user
@@ -16,10 +17,13 @@ class UserController {
             return res.status(400).json({ errors: errors.array() });
         }
 
+        const log = await LogModule.create(req.ip, '회원가입', req.body);
         try {
             const userData = await UserModule.create(req);
+            LogModule.complete(log, userData);
             res.status(201).json(userData);
         } catch (error) {
+            LogModule.error(log, error, 'error');
             res.status(500).json({ error: '회원가입에 실패하였습니다.' });
         }
     };
@@ -43,11 +47,14 @@ class UserController {
             return res.status(400).json({ errors: errors.array() });
         }
 
+        const log = await LogModule.create(req.ip, '로그인', req.body);
         try {
             const token = await UserModule.getToken(req);
+            LogModule.complete(log, null);
             res.status(200).json({ token: token });
         } catch (error) {
-            res.status(500).json({ error: '토큰발급에 실패했습니다.' });
+            LogModule.error(log, error, 'error');
+            res.status(500).json({ error: '로그인에 실패했습니다.' });
         }
     }
 }

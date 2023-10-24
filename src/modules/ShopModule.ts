@@ -21,8 +21,6 @@ class ShopModule {
 
             return new ShopResource(shop);
         } catch (error) {
-            // TODO: error 핸들링 처리 추가
-            console.log(error);
             throw error;
         }
     }
