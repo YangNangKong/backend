@@ -12,8 +12,6 @@ router.get('/', (req, res) => {
   res.send('Hello, TypeScript Express!');
 });
 
-// TODO: Controller 에 log 로직 추가필요
-
 // 로그인 유저
 router.post('/user', UserController.createUser); // 생성
 router.post('/login', UserController.login); // 로그인 및 토큰 발급
