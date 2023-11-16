@@ -37,8 +37,4 @@ export const callCustomer: ValidationChain[] = [
     body('id')
         .exists().withMessage('id is required')
         .isInt().withMessage('id must be a int'),
-    body('tabling_type')
-        .exists().withMessage('tabling_type is required')
-        .isString().withMessage('address must be a string')
-        .isIn(['waiting']).withMessage('tabling_type must be "run", "complete", or "waiting"'),
 ];

@@ -1,5 +1,8 @@
 import { Request } from 'express';
 import TablingList from '../models/TablingList';
+import { SolapiMessageService } from 'solapi';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 class TablingModule {
     // complete, waiting, run
@@ -83,10 +86,20 @@ class TablingModule {
                 throw new Error("리스트를 찾을 수 없습니다.");
             }
 
-            // TODO: 카톡메시지 보내는 로직 추가
+            const messageService = new SolapiMessageService(process.env.MESSAGE_API_KEY || '', process.env.MESSAGE_API_SECRET || '');
+            const message = await messageService.send({
+                'to': (tablingList.phone_number).replace(/-/g, ''), // 수신자
+                'from': process.env.MESSAGE_COLLER, // 발신자
+                // TODO: 매장이름 앞에 붙이기
+                'text': '고객님의 차례가 되었습니다. 지금 매장으로 와주세요!'
+            });
 
-            // TODO: resource 추가
-            return tablingList;
+            const returnData = {
+                'id': tablingList.id,
+                'shop_id': tablingList.shop_id,
+                // 'message': message.groupInfo,
+            };
+            return returnData;
         } catch (error) {
             // TODO: error 핸들링 처리 추가
             console.log(error);
