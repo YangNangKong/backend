@@ -21,7 +21,7 @@ class UserController {
         try {
             const userData = await UserModule.create(req);
             LogModule.complete(log, userData);
-            res.status(201).json(userData);
+            res.status(200).json(userData);
         } catch (error) {
             LogModule.error(log, error, 'error');
             res.status(500).json({ error: '회원가입에 실패하였습니다.' });
