@@ -13,12 +13,14 @@ class TablingModule {
                 shop_id,
                 tabling_type,
                 phone_number,
+                personnel,
             } = req.body;
 
             const tablingList = await TablingList.create({
                 shop_id,
                 tabling_type,
                 phone_number,
+                personnel,
             });
 
             // TODO: resource 추가

@@ -6,6 +6,7 @@ class TablingList extends Model {
     public shop_id!: number;
     public tabling_type!: string;
     public phone_number!: string;
+    public personnel!: string;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
     public deletedAt!: Date | null; // 삭제 시간
@@ -30,6 +31,11 @@ TablingList.init(
         },
         phone_number: {
             type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: null,
+        },
+        personnel: {
+            type: DataTypes.INTEGER,
             allowNull: true,
             defaultValue: null,
         },

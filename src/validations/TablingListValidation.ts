@@ -11,6 +11,9 @@ export const create: ValidationChain[] = [
     body('phone_number')
         .exists().withMessage('phone_number is required')
         .isString().withMessage('phone_number must be a string'),
+    body('personnel')
+        .exists().withMessage('personnel is required')
+        .isInt().withMessage('personnel must be a int'),
 ];
 
 export const get: ValidationChain[] = [
