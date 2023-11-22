@@ -7,7 +7,7 @@ dotenv.config();
 const secretKey = process.env.TOKENSECRETKEY || 'undefined';
 
 export function generateToken(data: any): string {
-    return jwt.sign(data, secretKey, { expiresIn: '6h' });
+    return jwt.sign(data, secretKey, { expiresIn: '24h' });
 }
 
 export function authenticateToken(req: Request, res: Response, next: NextFunction) {
