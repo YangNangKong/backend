@@ -1,7 +1,9 @@
 import { Request } from 'express';
+import { Op } from 'sequelize';
 import TablingList from '../models/TablingList';
 import { SolapiMessageService } from 'solapi';
 import * as dotenv from 'dotenv';
+import Shop from '../models/Shop';
 dotenv.config();
 
 class TablingModule {
@@ -39,15 +41,21 @@ class TablingModule {
                 tabling_type,
             } = req.body;
 
-            const tablingList = await TablingList.findAll({
-                where: {
-                    shop_id: shop_id,
-                    tabling_type: tabling_type,
-                },
-            });
-
-            // TODO: resource 추가
-            return tablingList;
+            const shop = await Shop.findByPk(shop_id);
+            if (shop && (shop.open_date !== null)) {
+                const tablingList = await TablingList.findAll({
+                    where: {
+                        shop_id: shop_id,
+                        tabling_type: tabling_type,
+                        createdAt: {
+                            [Op.gte]: shop.open_date,
+                        },
+                    },
+                });
+                return tablingList;
+            } else {
+                return { 'message': '오픈전입니다.' }
+            }
         } catch (error) {
             // TODO: error 핸들링 처리 추가
             console.log(error);
