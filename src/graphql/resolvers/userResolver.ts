@@ -5,8 +5,16 @@ import UserType from '../types/UserType';
 @Resolver(() => UserType)
 export class UserResolver {
     @Query(() => [UserType])
-    async users() {
-        return await User.findAll();
+    async users(
+        @Arg('user_name', { nullable: true }) user_name: string,
+        @Arg('email', { nullable: true }) email: string
+    ) {
+        const whereCondition: any = {
+            ...(user_name && { user_name }),
+            ...(email && { email }),
+        };
+
+        return await User.findAll({ where: whereCondition });
     }
 
     @Query(() => UserType, { nullable: true })

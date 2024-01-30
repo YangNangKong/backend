@@ -61,7 +61,11 @@ class UserModule {
     }
 
     static async getToken(req: Request) {
-        let token = 'fail';
+        let result = {
+            'message': '',
+            'status': false,
+            'token': '',
+        };
         const {
             user_name,
             password,
@@ -75,17 +79,20 @@ class UserModule {
             });
 
             if (userToken) {
-                token = generateToken({ user_id: user.id, user_name: user.user_name });
+                result.token = generateToken({ user_id: user.id, user_name: user.user_name });
 
                 // token 테이블에 저장
-                userToken.token = token;
+                userToken.token = result.token;
                 userToken.save();
+
+                result.message = '토큰발급 성공'
+                result.status = true;
             }
         } else {
-            token = '계정정보를 다시 확인해주세요.';
+            result.message = '계정정보를 다시 확인해주세요.';
         }
 
-        return token;
+        return result;
     }
 }
 

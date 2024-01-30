@@ -49,9 +49,9 @@ class UserController {
 
         const log = await LogModule.create(req.ip, '로그인', req.body);
         try {
-            const token = await UserModule.getToken(req);
+            const result = await UserModule.getToken(req);
             LogModule.complete(log, null);
-            res.status(200).json({ token: token });
+            result.status ? res.status(200).json(result) : res.status(401).json(result);
         } catch (error) {
             LogModule.error(log, error, 'error');
             res.status(500).json({ error: '로그인에 실패했습니다.' });
