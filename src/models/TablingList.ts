@@ -7,9 +7,9 @@ class TablingList extends Model {
     public tabling_type!: string;
     public phone_number!: string;
     public personnel!: string;
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
-    public deletedAt!: Date | null; // 삭제 시간
+    public readonly created_at!: Date;
+    public readonly updated_at!: Date;
+    public deleted_at!: Date | null; // 삭제 시간
 }
 
 TablingList.init(
@@ -39,17 +39,17 @@ TablingList.init(
             allowNull: true,
             defaultValue: null,
         },
-        createdAt: {
+        created_at: {
             type: DataTypes.DATE,
             allowNull: false,
             field: 'created_at',
         },
-        updatedAt: {
+        updated_at: {
             type: DataTypes.DATE,
             allowNull: false,
             field: 'updated_at',
         },
-        deletedAt: {
+        deleted_at: {
             type: DataTypes.DATE,
             allowNull: true,
             field: 'deleted_at',
@@ -62,6 +62,7 @@ TablingList.init(
         tableName: 'tabling_list',
         paranoid: true, // 소프트 삭제 활성화
         timestamps: true, // 자동 타임스탬프 활성화
+        underscored: true, // 스네이크케이스
     }
 );
 

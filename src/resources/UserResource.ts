@@ -7,8 +7,8 @@ export class UserResource {
     company_name: string;
     company_code: string;
     phone_number: string;
-    // createdAt: Date;
-    // updatedAt: Date;
+    // created_at: Date;
+    // updated_at: Date;
 
     constructor(user: User) {
         this.id = user.id;
@@ -17,7 +17,7 @@ export class UserResource {
         this.company_name = user.company_name;
         this.company_code = user.company_code;
         this.phone_number = user.phone_number;
-        // this.createdAt = user.createdAt;
-        // this.updatedAt = user.updatedAt;
+        // this.created_at = user.created_at;
+        // this.updated_at = user.updated_at;
     }
 }

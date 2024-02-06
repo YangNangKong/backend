@@ -10,8 +10,8 @@ class Log extends Model {
     public log_level!: string; // progress, complete, fail, error
     public resquest_data!: Json; // 요청
     public response_data!: Json; // 응답
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+    public readonly created_at!: Date;
+    public readonly updated_at!: Date;
 }
 
 Log.init(
@@ -46,15 +46,13 @@ Log.init(
             type: DataTypes.JSON,
             allowNull: true,
         },
-        createdAt: {
+        created_at: {
             type: DataTypes.DATE,
             allowNull: false,
-            field: 'created_at',
         },
-        updatedAt: {
+        updated_at: {
             type: DataTypes.DATE,
             allowNull: false,
-            field: 'updated_at',
         },
     },
     {
@@ -62,6 +60,7 @@ Log.init(
         modelName: 'Log',
         tableName: 'log',
         timestamps: true, // 자동 타임스탬프 활성화
+        underscored: true, // 스네이크케이스
     }
 );
 

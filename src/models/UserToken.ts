@@ -4,9 +4,9 @@ import sequelize from '../config/database';
 class UserToken extends Model {
     public user_id!: number;
     public token!: string;
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
-    public deletedAt!: Date | null; // 삭제 시간
+    public readonly created_at!: Date;
+    public readonly updated_at!: Date;
+    public deleted_at!: Date | null; // 삭제 시간
 
     // 연관모델
     // public readonly User?: User;
@@ -30,20 +30,17 @@ UserToken.init(
             allowNull: true,
             unique: true,
         },
-        createdAt: {
+        created_at: {
             type: DataTypes.DATE,
             allowNull: false,
-            field: 'created_at',
         },
-        updatedAt: {
+        updated_at: {
             type: DataTypes.DATE,
             allowNull: false,
-            field: 'updated_at',
         },
-        deletedAt: {
+        deleted_at: {
             type: DataTypes.DATE,
             allowNull: true,
-            field: 'deleted_at',
             defaultValue: null,
         },
     },
@@ -53,6 +50,7 @@ UserToken.init(
         tableName: 'user_token',
         paranoid: true, // 소프트 삭제 활성화
         timestamps: true, // 자동 타임스탬프 활성화
+        underscored: true, // 스네이크케이스
     }
 );
 

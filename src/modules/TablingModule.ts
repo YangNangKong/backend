@@ -47,7 +47,7 @@ class TablingModule {
                     where: {
                         shop_id: shop_id,
                         tabling_type: tabling_type,
-                        createdAt: {
+                        created_at: {
                             [Op.gte]: shop.open_date,
                         },
                     },
