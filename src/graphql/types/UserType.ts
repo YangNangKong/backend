@@ -23,6 +23,15 @@ class UserType {
   @Field({ nullable: true })
   phone_number?: string;
 
+  @Field({ nullable: true })
+  created_at?: Date;
+
+  @Field({ nullable: true })
+  updated_at?: Date;
+
+  @Field({ nullable: true })
+  deleted_at?: Date;
+
   // 생성자
   constructor(
     id: number,
@@ -31,7 +40,10 @@ class UserType {
     email: string,
     company_name?: string,
     company_code?: string,
-    phone_number?: string
+    phone_number?: string,
+    created_at?: Date,
+    updated_at?: Date,
+    deleted_at?: Date,
   ) {
     this.id = id;
     this.user_name = user_name;
@@ -40,6 +52,9 @@ class UserType {
     this.company_name = company_name;
     this.company_code = company_code;
     this.phone_number = phone_number;
+    this.created_at = created_at;
+    this.updated_at = updated_at;
+    this.deleted_at = deleted_at;
   }
 }
 
