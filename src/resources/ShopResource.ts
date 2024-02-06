@@ -9,8 +9,8 @@ export class ShopResource {
     detail_address: string;
     open_date: Date | null;
     closed_date: Date | null;
-    // created_At: Date;
-    // updated_at: Date;
+    created_at: Date;
+    updated_at: Date;
 
     constructor(shop: Shop) {
         this.id = shop.id;
@@ -20,7 +20,7 @@ export class ShopResource {
         this.detail_address = shop.detail_address;
         this.open_date = shop.open_date;
         this.closed_date = shop.closed_date;
-        // this.created_at = user.created_at;
-        // this.updated_at = user.updated_at;
+        this.created_at = shop.created_at;
+        this.updated_at = shop.updated_at;
     }
 }
