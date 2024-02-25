@@ -3,7 +3,10 @@ import { UserResolver } from './resolvers/userResolver';
 import { ShopResolver } from './resolvers/ShopResolver';
 
 export const schema = buildSchemaSync({
-  resolvers: [UserResolver, ShopResolver],
+  resolvers: [
+    UserResolver,
+    ShopResolver,
+  ],
   emitSchemaFile: true,
   validate: false,
 });
