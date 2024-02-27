@@ -61,13 +61,14 @@ class UserModule {
         };
 
         try {
-            const user = await User.findOne({where: whereCondition});
+            const user = await User.findOne({ where: whereCondition });
             if (user !== null) {
                 const userResources = new UserResource(user);
                 return userResources;
             } else {
                 return {
-                    "message" : "유저가 없습니다.",
+                    'message': '유저가 없습니다.',
+                    'status': false,
                 };
             }
         } catch (error) {
