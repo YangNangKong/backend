@@ -49,7 +49,7 @@ class UserModule {
         }
     }
 
-    static async find(req: Request) {
+    static async duplicatedCheck(req: Request) {
         const {
             user_name,
             email,
@@ -70,13 +70,9 @@ class UserModule {
         try {
             const user = await User.findOne({ where: whereCondition });
             if (user !== null) {
-                const userResources = new UserResource(user);
-                return userResources;
+                return {'status':true};
             } else {
-                return {
-                    'message': '유저가 없습니다.',
-                    'status': false,
-                };
+                return {'status': false};
             }
         } catch (error) {
             // TODO: error 핸들링 처리 추가

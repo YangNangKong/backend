@@ -31,7 +31,7 @@ class UserController {
     static async getUser(req: Request, res: Response) {
 
         try {
-            const user = await UserModule.find(req);
+            const user = await UserModule.duplicatedCheck(req);
             res.status(200).json(user);
         } catch (error) {
             res.status(500).json({ error: '조회에 실패했습니다.' });
