@@ -18,7 +18,7 @@ router.post('/login', UserController.login); // 로그인 및 토큰 발급
 // 토큰체크 미들웨어 (이 밑으로 다 적용됨)
 router.use('/', authenticateToken);
 router.get('/users', UserController.getUsers); // 조회 // TODO: 전체 조회기능은 추후 필요 막는게 필요
-router.get('/user/:id', UserController.getUser); // 단일조회
+router.get('/user', UserController.getUser); // 단일조회
 
 // 매장 CRUD
 router.get('/shop/:shop_id', ShopController.getShop); // 매장조회

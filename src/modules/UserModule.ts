@@ -48,9 +48,19 @@ class UserModule {
         }
     }
 
-    static async find(id: string) {
+    static async find(req: Request) {
+        const {
+            user_name,
+            email,
+        } = req.body;
+
+        const whereCondition: any = {
+            ...(user_name && { user_name }),
+            ...(email && { email }),
+        };
+
         try {
-            const user = await User.findByPk(id);
+            const user = await User.findOne(whereCondition);
             if (user !== null) {
                 const userResources = new UserResource(user);
                 return userResources;

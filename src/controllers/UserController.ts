@@ -29,10 +29,9 @@ class UserController {
     };
 
     static async getUser(req: Request, res: Response) {
-        const userId = req.params.id;
 
         try {
-            const user = await UserModule.find(userId);
+            const user = await UserModule.find(req);
             res.status(200).json(user);
         } catch (error) {
             res.status(500).json({ error: '조회에 실패했습니다.' });
