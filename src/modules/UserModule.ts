@@ -48,6 +48,24 @@ class UserModule {
         }
     }
 
+    static async find(id: string) {
+        try {
+            const user = await User.findByPk(id);
+            if (user !== null) {
+                const userResources = new UserResource(user);
+                return userResources;
+            } else {
+                return {
+                    "message" : "유저가 없습니다.",
+                };
+            }
+        } catch (error) {
+            // TODO: error 핸들링 처리 추가
+            console.log(error);
+            throw error;
+        }
+    }
+
     static async findAll() {
         try {
             const users = await User.findAll();
