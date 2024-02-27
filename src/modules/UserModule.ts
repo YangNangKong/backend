@@ -3,6 +3,7 @@ import User from '../models/User';
 import { UserResource } from '../resources/UserResource';
 import { generateToken } from './Token';
 import UserToken from '../models/UserToken';
+import { where } from 'sequelize';
 
 class UserModule {
     // constructor(parameters) {
@@ -60,7 +61,7 @@ class UserModule {
         };
 
         try {
-            const user = await User.findOne(whereCondition);
+            const user = await User.findOne({where: whereCondition});
             if (user !== null) {
                 const userResources = new UserResource(user);
                 return userResources;
