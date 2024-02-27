@@ -60,6 +60,13 @@ class UserModule {
             ...(email && { email }),
         };
 
+        if (Object.entries(whereCondition).length === 0) {
+            return {
+                'message': '호출 스펙이 잘못되었습니다.',
+                'status': false,
+            };
+        }
+
         try {
             const user = await User.findOne({ where: whereCondition });
             if (user !== null) {
