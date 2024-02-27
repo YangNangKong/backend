@@ -53,7 +53,7 @@ class UserModule {
         const {
             user_name,
             email,
-        } = req.body;
+        } = req.query;
 
         const whereCondition: any = {
             ...(user_name && { user_name }),
