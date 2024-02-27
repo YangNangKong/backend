@@ -54,11 +54,11 @@ Shop.init(
         },
         created_at: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
         updated_at: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
         deleted_at: {
             type: DataTypes.DATE,
